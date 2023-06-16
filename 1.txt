@@ -20,15 +20,36 @@ class Elevator
         std::vector<int> queue = {};
         std::vector<int> goals = {};
 
-        void which_floor(float y_pos)
+        
+        
+        int set_height(int next_floor) //PODANIE WARTOSCI PIKSELI NA JAKA MA DOTRZEC WINDA NA PODSTAWIE NUMERU DOCELOWEGO PIETRA
         {
-            if (y_pos == 634) current_floor = 0;
-            if (y_pos == 500) current_floor = 1;
-            if (y_pos == 377) current_floor = 2;
-            if (y_pos == 254) current_floor = 3;
-            if (y_pos == 131) current_floor = 4;
-            if (y_pos == 8) current_floor = 5;
+
+            switch (next_floor)
+            {
+            case 0:
+                return 634;
+                break;
+            case 1:
+                return 500;
+                break;
+            case 2:
+                return 377;
+                break;
+            case 3:
+                return 254;
+                break;
+            case 4:
+                return 131;
+                break;
+            case 5:
+                return 8;
+                break;
+            }
         }
+        
+        
+      
        
         bool czy_przyjac(int floor) 
         {
@@ -146,7 +167,7 @@ class Elevator
                 }
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!JEDZ NA TE PIETRO
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!SPRAWDZ CZY WINDA OSIAGNELA ZADANA WYSOKOSC 
-                //PRZESZUKAJ WEKTOR NUMEROW NA KTORE WINDA MA DOJECHAC Z PIETRA WEZWANIA
+                //! //PRZESZUKAJ WEKTOR NUMEROW NA KTORE WINDA MA DOJECHAC Z PIETRA WEZWANIA
                 auto container_2 = std::find(queue.begin(), queue.end(), destiny);
                 while (container_2 != queue.end())
                 {
@@ -158,48 +179,35 @@ class Elevator
                 current_floor = destiny; //ZAKTUALIZUJ AKTUALNY NUMER PIETRA
                 //CALA TA CZESC OD WYKRZYKNIKOW DO TEGO MOMENTU TYLKO POD WARUNKIEM ZE WINDA OSIAGNELA ZADANA WYSOKOSC !
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /*
-            //PIERWSZA WERJSA
-            while (!queue.empty())
-            {
-                if (direction == 1)
+             
+             /*
+                //PIERWSZA WERJSA
+                while (!queue.empty())
                 {
-                    destiny = queue[0];
-                }
-                else if (direction == 0)
-                {
-                    destiny = queue[queue.size() - 1];
-                }
+                    if (direction == 1)
+                    {
+                        destiny = queue[0];
+                    }
+                    else if (direction == 0)
+                    {
+                        destiny = queue[queue.size() - 1];
+                    }
 
-                auto container_1 = std::find(queue.begin(), queue.end(), destiny);
-                while (container_1 != queue.end())
-                {
-                    queue.erase(container_1); 
-                    ++current_weight;
-                    container_1 = std::find(queue.begin(), queue.end(), destiny);
-                }
-                current_floor = destiny;
+                    auto container_1 = std::find(queue.begin(), queue.end(), destiny);
+                    while (container_1 != queue.end())
+                    {
+                        queue.erase(container_1); 
+                        ++current_weight;
+                        container_1 = std::find(queue.begin(), queue.end(), destiny);
+                    }
+                    current_floor = destiny;
 
 
-            }
+                }
+                */
         }
-        /*
+
+       
 
 };
 
@@ -319,7 +327,6 @@ void simulate(sf::Sprite& buttonf01, sf::Sprite& buttonf02, sf::Sprite& buttonf0
     sf::Clock clock;
     float time = 0.0f;
     bool flag0, flag1, flag2, flag3, flag4, flag5;
-    e1.which_floor(elevator.getPosition().y);
 
     while (window.isOpen())
     {
